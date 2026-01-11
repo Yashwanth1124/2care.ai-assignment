@@ -1,0 +1,22 @@
+.reports-filters {
+  margin-bottom: 30px;
+}
+
+.reports-filters h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 10px;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 10px;
+}

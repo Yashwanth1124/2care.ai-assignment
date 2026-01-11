@@ -1,0 +1,83 @@
+.report-list-container {
+  margin-top: 20px;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.report-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.report-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.report-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+
+.report-card-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 18px;
+  flex: 1;
+  margin-right: 10px;
+  word-break: break-word;
+}
+
+.report-badge {
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.report-card-body {
+  margin-bottom: 15px;
+}
+
+.report-date {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.report-vitals {
+  color: #2196F3;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.report-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.loading-message,
+.no-reports-message {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 18px;
+}

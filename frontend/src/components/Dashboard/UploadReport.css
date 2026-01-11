@@ -1,0 +1,10 @@
+.upload-report-container {
+  padding: 20px;
+}
+
+.upload-report-container input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
