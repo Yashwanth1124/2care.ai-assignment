@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   LineChart,
   Line,
@@ -23,11 +23,7 @@ const VitalsChart = () => {
 
   const vitalTypes = ['BP', 'Sugar', 'Heart Rate', 'Oxygen', 'Temperature', 'Weight'];
 
-  useEffect(() => {
-    fetchVitalsTrends();
-  }, [dateRange]);
-
-  const fetchVitalsTrends = async () => {
+  const fetchVitalsTrends = useCallback(async () => {
     setLoading(true);
     try {
       const response = await api.get('/vitals/trends', {
@@ -39,7 +35,11 @@ const VitalsChart = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [dateRange]);
+
+  useEffect(() => {
+    fetchVitalsTrends();
+  }, [fetchVitalsTrends]);
 
   const formatChartData = (type) => {
     if (!trends[type] || trends[type].length === 0) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReportList from '../components/Reports/ReportList';
 import ShareReportModal from '../components/Reports/ShareReportModal';
 import api from '../services/api';
@@ -17,15 +17,7 @@ const Reports = () => {
   const [selectedReport, setSelectedReport] = useState(null);
   const [showShareModal, setShowShareModal] = useState(false);
 
-  useEffect(() => {
-    fetchReports();
-  }, []);
-
-  useEffect(() => {
-    applyFilters();
-  }, [filters, reports]);
-
-  const fetchReports = async () => {
+  const fetchReports = useCallback(async () => {
     setLoading(true);
     try {
       const params = {};
@@ -41,14 +33,22 @@ const Reports = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters.start_date, filters.end_date, filters.report_type, filters.vital_type]);
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...reports];
 
     // Client-side filtering for additional filters if needed
     setFilteredReports(filtered);
-  };
+  }, [reports]);
+
+  useEffect(() => {
+    fetchReports();
+  }, [fetchReports]);
+
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
