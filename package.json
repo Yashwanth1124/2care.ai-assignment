@@ -10,10 +10,10 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --names \"BACKEND,FRONTEND\" --prefix-colors \"blue,green\"",
     "dev:backend": "npm run dev --prefix backend",
     "dev:frontend": "npm start --prefix frontend",
-    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\" --names \"BACKEND,FRONTEND\" --prefix-colors \"blue,green\"",
+    "build": "npm run build --prefix frontend",
+    "start": "npm run build && npm start --prefix backend",
     "start:backend": "npm start --prefix backend",
-    "start:frontend": "npm start --prefix frontend",
-    "build": "npm run build --prefix frontend"
+    "start:frontend": "npm start --prefix frontend"
   },
   "keywords": [
     "health",
@@ -26,7 +26,7 @@
   ],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^8.2.2"
   }
 }

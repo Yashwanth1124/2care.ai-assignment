@@ -60,6 +60,19 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Health Wallet API is running' });
 });
 
+// Serve frontend build in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'build');
+  app.use(express.static(frontendBuildPath));
+  
+  // Handle React routing - return all non-API requests to React app
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(path.join(frontendBuildPath, 'index.html'));
+    }
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

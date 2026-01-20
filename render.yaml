@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: health-wallet-app
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false  # Set this to your Render frontend URL if deploying separately
