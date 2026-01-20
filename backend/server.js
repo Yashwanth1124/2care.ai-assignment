@@ -68,7 +68,13 @@ if (process.env.NODE_ENV === 'production') {
   // Handle React routing - return all non-API requests to React app
   app.get('*', (req, res) => {
     if (!req.path.startsWith('/api')) {
-      res.sendFile(path.join(frontendBuildPath, 'index.html'));
+      const indexPath = path.join(frontendBuildPath, 'index.html');
+      // Avoid crashing if the build is missing; send 404 with hint
+      res.sendFile(indexPath, err => {
+        if (err) {
+          res.status(404).send('Frontend build not found. Ensure npm run build has been executed during deployment.');
+        }
+      });
     }
   });
 }
