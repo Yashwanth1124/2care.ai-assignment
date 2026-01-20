@@ -177,7 +177,7 @@ const passwordHash = await bcrypt.hash(password, 10);
 **File:** `backend/routes/auth.routes.js`
 
 ```javascript
-// Lines 32-34: Insert new user into database
+// Lines 32-34: Insert new user into DB
 db.run(
   'INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)',
   [name, email, passwordHash, 'Owner'],
